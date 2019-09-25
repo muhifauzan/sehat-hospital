@@ -1,0 +1,28 @@
+<h1>Listing Hospitals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for hospital <- @hospitals do %>
+    <tr>
+      <td><%= hospital.name %></td>
+      <td><%= hospital.address %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.hospital_path(@conn, :show, hospital) %></span>
+        <span><%= link "Edit", to: Routes.hospital_path(@conn, :edit, hospital) %></span>
+        <span><%= link "Delete", to: Routes.hospital_path(@conn, :delete, hospital), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Hospital", to: Routes.hospital_path(@conn, :new) %></span>

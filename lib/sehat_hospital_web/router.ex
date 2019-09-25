@@ -9,14 +9,18 @@ defmodule SehatHospitalWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
+  # pipeline :api do
+  #   plug :accepts, ["json"]
+  # end
 
   scope "/", SehatHospitalWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    scope "/admin", Admin do
+      resources "/hospitals", HospitalController
+    end
   end
 
   # Other scopes may use custom stacks.
