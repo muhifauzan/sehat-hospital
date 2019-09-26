@@ -3,7 +3,7 @@ defmodule SehatHospital.Repo.Migrations.CreatePatients do
 
   def change do
     create table(:patients) do
-      add :email, :string, unique: true
+      add :email, :string, null: false
       add :password_hash, :string
       add :name, :string
       add :age, :smallint

@@ -21,6 +21,7 @@ defmodule SehatHospitalWeb.Router do
     scope "/admin", Admin do
       resources "/hospitals", HospitalController
       resources "/doctors", DoctorController
+      resources "/patients", PatientController
     end
   end
 

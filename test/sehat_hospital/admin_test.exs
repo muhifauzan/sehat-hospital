@@ -134,4 +134,67 @@ defmodule SehatHospital.AdminTest do
       assert %Ecto.Changeset{} = Admin.change_doctor(doctor)
     end
   end
+
+  describe "patients" do
+    alias SehatHospital.Admin.Patient
+
+    @valid_attrs %{age: 42, email: "some email", name: "some name", password: "some password"}
+    @update_attrs %{age: 43, email: "some updated email", name: "some updated name", password: "some updated password"}
+    @invalid_attrs %{age: nil, email: nil, name: nil, password_hash: nil}
+
+    def patient_fixture(attrs \\ %{}) do
+      {:ok, patient} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Admin.create_patient()
+
+      patient
+    end
+
+    test "list_patients/0 returns all patients" do
+      patient = patient_fixture()
+      assert Admin.list_patients() == [patient]
+    end
+
+    test "get_patient!/1 returns the patient with given id" do
+      patient = patient_fixture()
+      assert Admin.get_patient!(patient.id) == patient
+    end
+
+    test "create_patient/1 with valid data creates a patient" do
+      assert {:ok, %Patient{} = patient} = Admin.create_patient(@valid_attrs)
+      assert patient.age == 42
+      assert patient.email == "some email"
+      assert patient.name == "some name"
+    end
+
+    test "create_patient/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Admin.create_patient(@invalid_attrs)
+    end
+
+    test "update_patient/2 with valid data updates the patient" do
+      patient = patient_fixture()
+      assert {:ok, %Patient{} = patient} = Admin.update_patient(patient, @update_attrs)
+      assert patient.age == 43
+      assert patient.email == "some updated email"
+      assert patient.name == "some updated name"
+    end
+
+    test "update_patient/2 with invalid data returns error changeset" do
+      patient = patient_fixture()
+      assert {:error, %Ecto.Changeset{}} = Admin.update_patient(patient, @invalid_attrs)
+      assert patient == Admin.get_patient!(patient.id)
+    end
+
+    test "delete_patient/1 deletes the patient" do
+      patient = patient_fixture()
+      assert {:ok, %Patient{}} = Admin.delete_patient(patient)
+      assert_raise Ecto.NoResultsError, fn -> Admin.get_patient!(patient.id) end
+    end
+
+    test "change_patient/1 returns a patient changeset" do
+      patient = patient_fixture()
+      assert %Ecto.Changeset{} = Admin.change_patient(patient)
+    end
+  end
 end

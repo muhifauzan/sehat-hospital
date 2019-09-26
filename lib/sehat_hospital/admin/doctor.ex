@@ -17,7 +17,7 @@ defmodule SehatHospital.Admin.Doctor do
   def changeset(doctor, attrs) do
     doctor
     |> cast(attrs, [:hospital_id, :name, :age, :focus, :schedule])
-    |> foreign_key_constraint(:hospital_id)
     |> validate_required([:name, :age, :focus, :schedule])
+    |> foreign_key_constraint(:hospital_id)
   end
 end
