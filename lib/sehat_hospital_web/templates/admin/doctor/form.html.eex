@@ -1,0 +1,31 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%#= label f, :hospital %>
+  <%= select f, :hospital_id, Enum.map(@hospitals, &{&1.name, &1.id}) %>
+  <%#= error_tag f, :hospital %>
+
+  <%= label f, :name %>
+  <%= text_input f, :name %>
+  <%= error_tag f, :name %>
+
+  <%= label f, :age %>
+  <%= number_input f, :age %>
+  <%= error_tag f, :age %>
+
+  <%= label f, :focus %>
+  <%= text_input f, :focus %>
+  <%= error_tag f, :focus %>
+
+  <%= label f, :schedule %>
+  <%= time_select f, :schedule %>
+  <%= error_tag f, :schedule %>
+
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>

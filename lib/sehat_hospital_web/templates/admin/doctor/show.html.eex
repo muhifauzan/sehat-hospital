@@ -1,0 +1,33 @@
+<h1>Show Doctor</h1>
+
+<ul>
+
+  <li>
+    <strong>Hospital:</strong>
+    <%= hospital_name(@doctor) %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @doctor.name %>
+  </li>
+
+  <li>
+    <strong>Age:</strong>
+    <%= @doctor.age %>
+  </li>
+
+  <li>
+    <strong>Focus:</strong>
+    <%= @doctor.focus %>
+  </li>
+
+  <li>
+    <strong>Schedule:</strong>
+    <%= @doctor.schedule %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.doctor_path(@conn, :edit, @doctor) %></span>
+<span><%= link "Back", to: Routes.doctor_path(@conn, :index) %></span>

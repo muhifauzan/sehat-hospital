@@ -3,6 +3,8 @@ defmodule SehatHospital.Admin.Hospital do
   import Ecto.Changeset
 
   schema "hospitals" do
+    has_many :doctors, SehatHospital.Admin.Doctor
+
     field :address, :string
     field :name, :string
 

@@ -5,7 +5,7 @@ defmodule SehatHospital.Repo.Migrations.CreateAppointments do
     create table(:appointments, primary_key: false) do
       add :doctor_id, references(:doctors)
       add :patient_id, references(:patients)
-      add :schedule, :utc_datetime
+      add :schedule, :time
     end
   end
 end
