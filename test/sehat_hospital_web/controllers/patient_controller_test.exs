@@ -3,9 +3,9 @@ defmodule SehatHospitalWeb.PatientControllerTest do
 
   alias SehatHospital.Admin
 
-  @create_attrs %{age: 42, email: "some email", name: "some name", password_hash: "some password_hash"}
-  @update_attrs %{age: 43, email: "some updated email", name: "some updated name", password_hash: "some updated password_hash"}
-  @invalid_attrs %{age: nil, email: nil, name: nil, password_hash: nil}
+  @create_attrs %{age: 42, email: "some email", name: "some name", password: "some password"}
+  @update_attrs %{age: 43, email: "some updated email", name: "some updated name", password: "some updated password"}
+  @invalid_attrs %{age: nil, email: nil, name: nil, password: nil}
 
   def fixture(:patient) do
     {:ok, patient} = Admin.create_patient(@create_attrs)
